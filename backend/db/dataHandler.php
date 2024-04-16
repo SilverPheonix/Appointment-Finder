@@ -1,19 +1,27 @@
 <?php
-include("./models/person.php");
-include("./models/book.php");
-include("db.php");
+
 class DataHandler
 {
 
     public function getAllAppointments()
     {
-        $query = "SELECT * FROM `appointment`";
-        // Use prepared statements to prevent SQL injection
+        include("db.php");
+
+        $query = "SELECT * FROM appointment";
         $stmt = $mysqli->prepare($query);
-        //$stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        return $result;
+        $count = $result->num_rows;
+        $appointment = array();
+
+        for($i= 0;$row = $result->fetch_object();$i++) {
+            $appointment[$i] = $row;
+        }
+        
+        $stmt->close();
+        $mysqli->close();
+
+        return $appointment;
     }
     /*
     public function getAppointment($id)
