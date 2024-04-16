@@ -1,0 +1,23 @@
+body {
+    background-color: #879bae;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 50px;}
+
+.bg-greyblue {
+    background-color: #708fb0;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    color: #5c83ae;
+    font-weight: 800;
+}
