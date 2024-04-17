@@ -1,5 +1,6 @@
 $(document).ready(function () {
     getAllAppointments();
+    getAppointmentDetail(1);
 });
 
 function getAllAppointments(){
@@ -18,6 +19,19 @@ function getAllAppointments(){
                 appointments += "<li>"+ response[i].a_id + " - "+response[i].a_title +" at "+response[i].a_place +"</li>";
             }
             $("#appointments").html(appointments);
+        }
+    });
+}
+//gets all options, selections and comments for an appointment
+function getAppointmentDetail($a_id){
+    $.ajax({
+        type: "POST",
+        url: "../backend/serviceHandler.php",
+        cache: false,
+        data: {method: 'getAppointmentDetail', param: $a_id},
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
         }
     });
 }

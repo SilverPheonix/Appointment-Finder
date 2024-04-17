@@ -23,6 +23,52 @@ class DataHandler
 
         return $appointment;
     }
+    public function getAppointmentDetail($id)
+    {
+        include("db.php");
+
+        $query1 = "SELECT * FROM `option` WHERE o_appointment = ?";
+        $query2 = "SELECT * FROM `selected` WHERE s_appointment = ?";
+        $query3 = "SELECT * FROM `comment` WHERE c_appointment = ?";
+
+        $stmt = $mysqli->prepare($query1);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->num_rows;
+        $options = array();
+        for($i= 0;$row = $result->fetch_object();$i++) {
+            $options[$i] = $row;
+        }
+        $stmt->close();
+
+        $stmt = $mysqli->prepare($query2);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->num_rows;
+        $selected = array();
+        for($i= 0;$row = $result->fetch_object();$i++) {
+            $selected[$i] = $row;
+        }
+        $stmt->close();
+
+        $stmt = $mysqli->prepare($query3);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->num_rows;
+        $comments = array();
+        for($i= 0;$row = $result->fetch_object();$i++) {
+            $comments[$i] = $row;
+        }
+        $stmt->close();
+
+        $mysqli->close();
+        
+        $appointment = [$options,$selected,$comments];
+        return $appointment;
+    }
     /*
     public function getAppointment($id)
     {
