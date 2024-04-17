@@ -1,4 +1,8 @@
 <?php
+include("./models/appointment.php");
+include("./models/comment.php");
+include("./models/option.php");
+include("./models/selected.php");
 
 class DataHandler
 {
@@ -15,7 +19,8 @@ class DataHandler
         $appointment = array();
 
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $appointment[$i] = $row;
+            $a = new Appointment($row->a_id, $row->a_title,$row->a_place,$row->a_date,$row->a_exdate);
+            $appointment[$i] = $a;
         }
         
         $stmt->close();
@@ -38,7 +43,8 @@ class DataHandler
         $count = $result->num_rows;
         $options = array();
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $options[$i] = $row;
+            $o = new Option($row->o_id, $row->o_date,$row->o_appointment);
+            $options[$i] = $o;
         }
         $stmt->close();
 
@@ -49,7 +55,8 @@ class DataHandler
         $count = $result->num_rows;
         $selected = array();
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $selected[$i] = $row;
+            $s = new Selected($row->s_id,$row->s_option, $row->s_user,$row->s_appointment);
+            $selected[$i] = $s;
         }
         $stmt->close();
 
@@ -60,12 +67,13 @@ class DataHandler
         $count = $result->num_rows;
         $comments = array();
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $comments[$i] = $row;
+            $c = new Comment($row->c_id, $row->c_content,$row->c_user,$row->c_appointment);
+            $comments[$i] = $c;
         }
         $stmt->close();
 
         $mysqli->close();
-        
+
         $appointment = [$options,$selected,$comments];
         return $appointment;
     }
