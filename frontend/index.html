@@ -14,23 +14,30 @@
         <h1>Appointments</h1>
     
         <!-- Placeholder appointments -->
-        <div class="scrollable-container" id="appointments">
+        <div class="scrollable-container bg-plurple" id="appointments">
             <div class="appointment-card">
                 <h3>Appointment 1</h3>
                 <p>Date: January 1, 2022</p>
-                <p>Time: 10:00 AM</p>
                 <p>Location: Room 101</p>
                 <div class="checkbox-container">
-                    <input class="checkbox" type="checkbox" id="selectappointment">
+                    <button type="button" class="btn selectappointment btn-primary" id="selectappointment">Select Appointment</button>
                 </div>
             </div>
             <div class="appointment-card">
                 <h3>Appointment 1</h3>
                 <p>Date: January 1, 2022</p>
-                <p>Time: 10:00 AM</p>
                 <p>Location: Room 101</p>
                 <div class="checkbox-container">
-                    <input class="checkbox" type="checkbox" id="selectappointment">
+                    <button type="button" class="btn selectappointment btn-primary" id="selectappointment">Select Appointment</button>
+                </div>
+            </div>
+
+            <div class="appointment-card">
+                <h3>Appointment 1</h3>
+                <p>Date: January 1, 2022</p>
+                <p>Location: Room 101</p>
+                <div class="checkbox-container">
+                    <button type="button" class="btn selectappointment btn-primary" id="selectappointment">Select Appointment</button>
                 </div>
             </div>
 
@@ -40,17 +47,7 @@
                 <p>Time: 10:00 AM</p>
                 <p>Location: Room 101</p>
                 <div class="checkbox-container">
-                    <input class="checkbox" type="checkbox" id="selectappointment">
-                </div>
-            </div>
-
-            <div class="appointment-card">
-                <h3>Appointment 1</h3>
-                <p>Date: January 1, 2022</p>
-                <p>Time: 10:00 AM</p>
-                <p>Location: Room 101</p>
-                <div class="checkbox-container">
-                    <input class="checkbox" type="checkbox" id="selectappointment">
+                    <button type="button" class="btn selectappointment btn-primary" id="selectappointment">Select Appointment</button>
                 </div>
             </div>
         </div>
@@ -59,35 +56,53 @@
         <!-- Formular für die Terminvereinbarung -->
         <form id="appointmentForm">
             <!-- Namenseingabe -->
-            <div class="bg-greyblue">             
+            <div class="bg-blue">             
                 <div class="row">
                     <div class="col-12 mt-3 mb-3">
-                        <label class="form-label">Options:</label>
-                        <div id="optionsContainer">
+                        <label class="form-label">Timeslots:</label>
+                        <div class="scrollable-container bg-white" id="Options">
+                            <div class="timeslot-card">
+                                <h3>Timeslot 1</h3>
+                                <p>from: 10:00 AM</p>
+                                <p>to: 11:00 AM</p>
+                                <div class="checkbox-container">
+                                    <input class="checkbox" type="checkbox" id="selecttimeslot">
+                                </div>
+                            </div>
+                            <div class="timeslot-card">
+                                <h3>Timeslot 1</h3>
+                                <p>from: 10:00 AM</p>
+                                <p>to: 11:00 AM</p>
+                                <div class="checkbox-container">
+                                    <input class="checkbox" type="checkbox" id="selecttimeslot">
+                                </div>
+                            </div>
                             <!-- Hier werden dann die optionen eingefügt -->
                         </div> 
                     </div>
                 </div>
-                <!-- Name field -->
-                <div class="row">
-                    <div class="col-6 mt-3 mb-3">
-                        <input type="text" class="form-control" id="nameInput" placeholder="Name">
+                <div id="Details">
+                    <!-- Name field -->
+                    <div class="row">
+                        <div class="col-6 mt-3 mb-3">
+                            <input type="text" class="form-control" id="nameInput" placeholder="Name">
+                        </div>
                     </div>
-                </div>
-                <!-- comment field -->
-                <div class="row">
-                    <div class="col-12 mt-3 mb-3">
-                        <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment"></textarea>
+                    <!-- comment field -->
+                    <div class="row">
+                        <div class="col-12 mt-3 mb-3">
+                            <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment"></textarea>
+                        </div>
                     </div>
-                </div>
-            </div>    
-            <!-- Submit-Button -->
-            <div class="row m-3">
-                <div class="col-5">
-                    <button type="button" class="btn btn-primary" id="BookButton">Book Appointment</button>
-                </div>
-                <div class="col-7">
-                    <img src="img/miau.jpg" alt="miau" height="100">
+                </div>    
+                <!-- Submit-Button -->
+                <div class="row m-3">
+                    <div class="col-5">
+                        <button type="button" class="btn VoteButton btn-primary" id="VoteButton">Vote Appointment</button>
+                    </div>
+                    <div class="col-7">
+                        <img src="img/miau.jpg" alt="miau" height="100">
+                    </div>
                 </div>
             </div>
         </form>
