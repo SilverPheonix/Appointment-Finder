@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS `Appointment-Finder`.`Selected` (
   `s_option` INT NOT NULL,
   `s_appointment` INT NOT NULL,
   `s_user` VARCHAR(45) NULL,
+  `s_value` tinyint NULL,
   PRIMARY KEY (`s_id`, `s_option`, `s_appointment`),
   INDEX `fk_Selected_Option1_idx` (`s_option` ASC, `s_appointment` ASC) ,
   CONSTRAINT `fk_Selected_Option1`
@@ -96,24 +97,28 @@ INSERT INTO `Appointment-Finder`.`Option`(`o_date`,`o_from`, `o_to`,`o_appointme
 INSERT INTO `Appointment-Finder`.`Option`(`o_date`,`o_from`, `o_to`,`o_appointment`) VALUES ('2024-05-01','13:30','14:30', 3);
 INSERT INTO `Appointment-Finder`.`Option`(`o_date`,`o_from`, `o_to`,`o_appointment`) VALUES ('2024-05-02','13:30','14:30', 3);
 
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (1,1,'Emma');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (1,2,'Emma');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (1,2,'Marie');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (1,3,'Marie');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (1,1,'Marie');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (1,2,'Toni');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (1,4,'Toni');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (2,5,'Stefan');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (2,7,'Stefan');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (2,6,'Ava');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (2,5,'Norbert');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (2,7,'Norbert');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (3,8,'Fiona');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (3,9,'Fiona');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (3,11,'Fiona');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (3,11,'Karola');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (3,10,'Karola');
-INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`) VALUES (3,9,'Karola');
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (1,1,'Emma', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (1,2,'Emma', 0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (1,3,'Emma', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (1,4,'Emma', 0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (1,1,'Marie', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (1,2,'Marie', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (1,3,'Marie', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (1,4,'Marie', 0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (2,5,'Stefan', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (2,6,'Stefan', 0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (2,7,'Stefan', 0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (2,5,'Ava', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (2,6,'Ava', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (2,7,'Ava', 1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (3,8,'Fiona',0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (3,9,'Fiona',0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (3,10,'Fiona',1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (3,11,'Fiona',1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (3,8,'Karola',0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (3,9,'Karola',1);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (3,10,'Karola',0);
+INSERT INTO `Appointment-Finder`.`Selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (3,11,'Karola',1);
 
 INSERT INTO `Appointment-Finder`.`Comment`(`c_content`,`c_appointment`,`c_user`) VALUES ('Wo würden wir dann essen?',1,'Marie');
 INSERT INTO `Appointment-Finder`.`Comment`(`c_content`,`c_appointment`,`c_user`) VALUES ('Kommt auch unser Klassenvorstand?',1,'Toni');

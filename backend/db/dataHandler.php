@@ -55,7 +55,7 @@ class DataHandler
         $count = $result->num_rows;
         $selected = array();
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $s = new Selected($row->s_id,$row->s_option, $row->s_user,$row->s_appointment);
+            $s = new Selected($row->s_id,$row->s_option, $row->s_user,$row->s_appointment, $row->s_value);
             $selected[$i] = $s;
         }
         $stmt->close();
@@ -77,25 +77,18 @@ class DataHandler
         $appointment = [$options,$selected,$comments];
         return $appointment;
     }
-    /*
-    public function getAppointment($id)
+    public function postSelected($selected)
     {
-        $result = array();
-        foreach ($this->queryBooks() as $val) {
-            if ($val[0]->author == $author) {
-                array_push($result, $val);
-            }
-        }
-        return $result;
+        include("db.php");
+        return 0;
     }
+    /*
+    
     public function postAppointment($appointment)
     {
         return 0;
     }
-    public function postSelected($selected)
-    {
-        return 0;
-    }
+    
 
     public function postComment($comment)
     {
