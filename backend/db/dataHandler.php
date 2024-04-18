@@ -19,7 +19,7 @@ class DataHandler
         $appointment = array();
 
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $a = new Appointment($row->a_id, $row->a_title,$row->a_place,$row->a_date,$row->a_exdate);
+            $a = new Appointment($row->a_id, $row->a_title,$row->a_place,$row->a_exdate);
             $appointment[$i] = $a;
         }
         
@@ -43,7 +43,7 @@ class DataHandler
         $count = $result->num_rows;
         $options = array();
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $o = new Option($row->o_id, $row->o_date,$row->o_appointment);
+            $o = new Option($row->o_id, $row->o_date,$row->o_to,$row->o_from,$row->o_appointment);
             $options[$i] = $o;
         }
         $stmt->close();

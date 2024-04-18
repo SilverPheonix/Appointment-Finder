@@ -17,8 +17,7 @@ function getAllAppointments(){
                 var appointment = response[i];
                 appointments += "<div class='appointment-card'>";
                 appointments += "<h3>" + appointment.title + "</h3>";
-                appointments += "<p>Date: " + appointment.date + "</p>";
-                appointments += "<p>Time: " + appointment.time + "</p>";
+                appointments += "<p>Expiration Date: " + appointment.exdate + "</p>";
                 appointments += "<p>Location: " + appointment.place + "</p>";
                 appointments += "</div>";
                 appointments += "<div class='checkbox-container'>";
