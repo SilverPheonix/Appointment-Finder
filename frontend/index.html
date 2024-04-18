@@ -12,7 +12,6 @@
 <body>
     <div class="container flex-container">
         <h1>Appointments</h1>
-    
         <!-- Placeholder appointments -->
         <div class="scrollable-container bg-plurple" id="appointments">
             <div class="appointment-card">
@@ -56,38 +55,118 @@
         <!-- Formular für die Terminvereinbarung -->
         <form id="appointmentForm">
             <!-- Namenseingabe -->
-            <div class="bg-blue">             
-                <div class="row">
-                    <div class="col-12 mt-3 mb-3">
-                        <label class="form-label">Timeslots:</label>
-                        <div class="scrollable-container bg-white" id="Options">
-                            <div class="timeslot-card">
-                                <h3>Timeslot 1</h3>
-                                <p>from: 10:00 AM</p>
-                                <p>to: 11:00 AM</p>
-                                <div class="checkbox-container">
-                                    <input class="checkbox" type="checkbox" id="selecttimeslot">
+            <div class="bg-blue">   
+                <div class="wrapper">
+                    <table>
+                      <thead>
+                        <th class='fix'><h3>Timeslots</h3></th>
+                        <th>
+                            <p>January 1, 2022</p>
+                            <p>from:</p>
+                            <p>10:00 AM</p>
+                            <p>to:</p>
+                            <p>11:00 AM</p>
+                        </th>
+                        <th>
+                            <p>January 1, 2022</p>
+                            <p>from:</p>
+                            <p>10:00 AM</p>
+                            <p>to:</p>
+                            <p>11:00 AM</p>
+                        </th>
+                        <th>
+                            <p>January 1, 2022</p>
+                            <p>from:</p>
+                            <p>10:00 AM</p>
+                            <p>to:</p>
+                            <p>11:00 AM</p>
+                        </th>
+                        <th>                            
+                            <p>January 1, 2022</p>
+                            <p>from:</p>
+                            <p>10:00 AM</p>
+                            <p>to:</p>
+                            <p>11:00 AM</p>
+                        </th>
+                        <th>
+                            <p>January 1, 2022</p>
+                            <p>from:</p>
+                            <p>10:00 AM</p>
+                            <p>to:</p>
+                            <p>11:00 AM</p>
+                        </th>
+                        <th>
+                            <p>January 1, 2022</p>
+                            <p>from:</p>
+                            <p>10:00 AM</p>
+                            <p>to:</p>
+                            <p>11:00 AM</p>
+                        </th>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class='fix'>First User</td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+
+                        </tr>
+                        <tr>
+                          <td class='fix'>Second User</td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
+
+                        </tr>
+                        <div id="Input">
+                            <tr>
+                                <td class='fix userinput'><input type="text" class="form-control" id="nameInput" placeholder="Name"></td>
+                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
+                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
+                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
+                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
+                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
+                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
+                              </tr>
+                        </div>
+                      </tbody>
+                    </table>
+                  </div>             
+
+
+                <!--
+                                <div class="row">
+                                    <div class="col-6 mt-3 mb-3">
+                                        <label class="form-label">Timeslots:</label>
+                                        <div class="scrollable-container bg-white" id="Options">
+                                            <div class="timeslot-card">
+                                                <h3>Timeslot 1</h3>
+                                                <p>from: 10:00 AM</p>
+                                                <p>to: 11:00 AM</p>
+                                                <div class="checkbox-container">
+                                                    <input class="checkbox" type="checkbox" id="selecttimeslot">
+                                                </div>
+                                            </div>
+                                            <div class="timeslot-card">
+                                                <h3>Timeslot 1</h3>
+                                                <p>from: 10:00 AM</p>
+                                                <p>to: 11:00 AM</p>
+                                                <div class="checkbox-container">
+                                                    <input class="checkbox" type="checkbox" id="selecttimeslot">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="timeslot-card">
-                                <h3>Timeslot 1</h3>
-                                <p>from: 10:00 AM</p>
-                                <p>to: 11:00 AM</p>
-                                <div class="checkbox-container">
-                                    <input class="checkbox" type="checkbox" id="selecttimeslot">
-                                </div>
-                            </div>
-                            <!-- Hier werden dann die optionen eingefügt -->
-                        </div> 
-                    </div>
+                -->
                 </div>
                 <div id="Details">
-                    <!-- Name field -->
-                    <div class="row">
-                        <div class="col-6 mt-3 mb-3">
-                            <input type="text" class="form-control" id="nameInput" placeholder="Name">
-                        </div>
-                    </div>
                     <!-- comment field -->
                     <div class="row">
                         <div class="col-12 mt-3 mb-3">

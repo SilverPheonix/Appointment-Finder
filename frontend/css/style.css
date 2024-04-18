@@ -2,6 +2,49 @@ body {
     background-color: #879bae;
     font-family: Arial, sans-serif;
 }
+.wrapper {
+    overflow-x:scroll;
+    width:100%; 
+}
+.userinput{
+    background-color: #708fb0;
+    color: #ffffff;
+}
+table {
+    table-layout: fixed; 
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+td, th {
+    background-color: #ffffff;
+    vertical-align: top;
+    text-align: center;
+    width:100px;
+    padding: 5px;
+}
+td {
+    background-color: #ccc;
+}
+tr {
+    border-top: 1px solid #ccc;
+}
+.fix {
+    position:sticky;
+    background: #c3dcf0;
+}
+.userinput {
+    background-color: #708fb0;
+    color: #ffffff;
+}
+.fix:first-child {
+    left:0;
+    width:180px;
+}
+
+
+
 
 .container {
     background-color: #fff;
@@ -19,7 +62,7 @@ body {
 
 .bg-blue {
     background-color: #708fb0;
-    color: #fff;
+    color: #000000;
     padding: 10px;
     border-radius: 5px;
 }
@@ -135,8 +178,8 @@ h1 {
 .selectappointment:focus,
 .selectappointment:active,
 .selectappointment:visited {
-    background-color: #be88a2;
-    border-color: #9c6f89;
+    background-color: #fa5d94;
+    border-color: #ab466d;
     color: #ffffff;
     box-shadow: none;
 }

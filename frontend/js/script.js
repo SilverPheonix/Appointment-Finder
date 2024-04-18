@@ -18,7 +18,7 @@ function getAllAppointments(){
                 var appointment = response[i];
                 appointments += "<div class='appointment-card'>";
                 appointments += "<h3>" + appointment.title + "</h3>";
-                appointments += "<p>Expiration Date: " + appointment.exdate + "</p>";
+                appointments += "<p>Vote until: " + appointment.exdate + "</p>";
                 appointments += "<p>Location: " + appointment.place + "</p>";
                 appointments += "<div class='select-container'>";
                 appointments += "<button type='button' class='btn selectappointment btn-primary' id='selectappointment'>Select Appointment</button>";
