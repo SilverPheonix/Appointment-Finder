@@ -53,7 +53,7 @@ h1 {
     height: 0;
 }
 
-.checkbox-container {
+.select-container {
     display: flex;
     justify-content: center;
     background-color: #5c83ae;
