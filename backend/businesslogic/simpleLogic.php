@@ -18,18 +18,9 @@ class SimpleLogic
             case "getAppointmentDetail":
                 $res = $this->dh->getAppointmentDetail($param);
                 break;
-            /*case "getAppointment":
-                $res = $this->dh->getAppointment($param);
+            case "postVote":
+                $res = $this->dh->postVote($param);
                 break;
-            case "postAppointment":
-                $res = $this->dh->postAppointment($param);
-                break;
-            case "postSelected":
-                $res = $this->dh->postSelected($param);
-                break;
-            case  "postComment":
-                $res = $this->dh->postComment($param);
-                break;*/
             default:
                 $res = null;
                 break;

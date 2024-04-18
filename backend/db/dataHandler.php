@@ -6,7 +6,7 @@ include("./models/selected.php");
 
 class DataHandler
 {
-
+    //Liste alle Appointments
     public function getAllAppointments()
     {
         include("db.php");
@@ -28,6 +28,7 @@ class DataHandler
 
         return $appointment;
     }
+
     public function getAppointmentDetail($id)
     {
         include("db.php");
@@ -36,6 +37,7 @@ class DataHandler
         $query2 = "SELECT * FROM `selected` WHERE s_appointment = ?";
         $query3 = "SELECT * FROM `comment` WHERE c_appointment = ?";
 
+        //Options eines Appointments aus der Datenbank 
         $stmt = $mysqli->prepare($query1);
         $stmt->bind_param("s", $id);
         $stmt->execute();
@@ -48,6 +50,7 @@ class DataHandler
         }
         $stmt->close();
 
+        //Selections eines Appointments aus der Datenbank 
         $stmt = $mysqli->prepare($query2);
         $stmt->bind_param("s", $id);
         $stmt->execute();
@@ -60,6 +63,7 @@ class DataHandler
         }
         $stmt->close();
 
+        //Comments eines Appointments aus der Datenbank 
         $stmt = $mysqli->prepare($query3);
         $stmt->bind_param("s", $id);
         $stmt->execute();
@@ -74,43 +78,42 @@ class DataHandler
 
         $mysqli->close();
 
+        //Alle drei Array als Array zurückgeben
         $appointment = [$options,$selected,$comments];
         return $appointment;
     }
-    public function postSelected($selected)
+    #
+    public function postVote($vote)
     {
         include("db.php");
-        return 0;
-    }
-    /*
-    
-    public function postAppointment($appointment)
-    {
-        return 0;
-    }
-    
+        
+        
+        //Selection in die Datenbank einfügen
+        //$vote[0] = appointment, $vote[1] = user, $vote[2] = selections als array, $vote[3]= comment
+        foreach($vote[2] as $v){
+            $query1 = "INSERT INTO `selected`(`s_appointment`,`s_option`,`s_user`, `s_value`) VALUES (?,?,?,?) ";
 
-    public function postComment($comment)
-    {
-       return 0;
-    }
+            $stmt = $mysqli->prepare($query1);
+            //$vote[0] = appointment, $vote[1] = user, $vote[2] = selections als array, $vote[3]= comment
+            $stmt->bind_param("ssss", $vote[0],$v[0],$vote[1],$v[1]);
+            $stmt->execute();
+            $stmt->close();
+        }
 
-    private static function getDemoData()
-    {
-        $demodata = [[
-            [new Person(1, "Jane", "Doe", "jane.doe@fhtw.at", 1234567, "Central IT")],
-            [new Person(2, "John", "Doe", "john.doe@fhtw.at", 34345654, "Help Desk")],
-            [new Person(3, "baby", "Doe", "baby.doe@fhtw.at", 54545455, "Management")],
-            [new Person(4, "Mike", "Smith", "mike.smith@fhtw.at", 343477778, "Faculty")],
-        ],
-        [
-            [new Book(1,"Mord im Orient-Express", "Agatha Christie")],
-            [new Book(2, "The Book Thief", "Markus Zusak")],
-            [new Book(3, "Paper Towns", "John Green")],
-            [new Book(4, "The Fault in Our Stars", "John Green")],
-            [new Book(5, "1984", "George Orwell")],
-        ]
-    ];
-        return $demodata;
-    }*/
+        //Überprüfen ob comment da ist, wenn ja => Comment in die Datenbank
+        if($vote[3]!= null){
+            $query2 = "INSERT INTO `comment`(`c_content`,`c_appointment`,`c_user`) VALUES (?,?,?)";
+
+            $stmt = $mysqli->prepare($query2);
+            //$vote[0] = appointment, $vote[1] = user, $vote[2] = selections als array, $vote[3]= comment
+            $stmt->bind_param("sss", $vote[3],$vote[0],$vote[1]);
+            $stmt->execute();
+            $stmt->close();
+        }
+
+        $mysqli->close();
+        return "Your vote was successfully inserted into the DB!";
+        
+    }
+    
 }
