@@ -19,9 +19,9 @@ function getAllAppointments(){
                 appointments += "<h3>" + appointment.title + "</h3>";
                 appointments += "<p>Expiration Date: " + appointment.exdate + "</p>";
                 appointments += "<p>Location: " + appointment.place + "</p>";
+                appointments += "<div class='select-container'>";
+                appointments += "<button type='button' class='btn selectappointment btn-primary' id='selectappointment'>Select Appointment</button>";
                 appointments += "</div>";
-                appointments += "<div class='checkbox-container'>";
-                appointments += "<input class='checkbox' type='checkbox' id='selectappointment'>";
                 appointments += "</div>";
             }
             $("#appointments").html(appointments);
