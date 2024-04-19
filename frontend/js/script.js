@@ -150,7 +150,10 @@ $(document).on('click', '#submitVote', function() {
             $("#commentInput").val("");
             generateCheckboxes(appointmentId);
             displayComments(appointmentId);
+<<<<<<< HEAD
             
+=======
+>>>>>>> b9dfb7433e678abf17dec5c2937bbdc8f7941ef8
 
         },
         error: function (jqXHR, textStatus, errorThrown) {
