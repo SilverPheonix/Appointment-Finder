@@ -140,7 +140,7 @@ $(document).on('click', '#submitVote', function() {
             $("#nameInput").val("");
             $("#commentInput").val("");
             generateCheckboxes(appointmentId);
-            
+            displayComments(appointmentId);
 
         },
         error: function (jqXHR, textStatus, errorThrown) {
