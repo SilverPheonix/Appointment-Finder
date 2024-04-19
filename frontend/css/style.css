@@ -55,6 +55,7 @@ td {
     border-radius: 5px;
     padding: 20px;
     margin-top: 50px;
+    max-width: 50%;
 }
 
 .bg-white {

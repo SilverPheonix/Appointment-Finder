@@ -10,69 +10,78 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container flex-container">
+    <div class="flex-container container">
+        <!-- Überschrift -->
         <h1>Appointments</h1>
-        <!-- Placeholder appointments -->
-        <div class="scrollable-container bg-plurple" id="appointments">
-            <div class="appointment-card">
-                <h3>Appointment 1</h3>
-                <p>Date: January 1, 2022</p>
-                <p>Location: Room 101</p>
-                <div class="select-container">
-                    <button type="button" class="btn selectbutton btn-primary" id="selectappointment">Select Appointment</button>
+        <!-- appointments -->
+        <div class="row m-3">
+            <div class="col-12">   
+                <div class="scrollable-container bg-plurple" id="appointments">
+                    <div class="appointment-card">
+                        <h3>Appointment 1</h3>
+                        <p>Date: January 1, 2022</p>
+                        <p>Location: Room 101</p>
+                        <div class="select-container">
+                            <button type="button" class="btn selectbutton btn-primary" id="selectappointment">Select Appointment</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row m-3" id="miau">
+                    <div class="col-12 d-flex justify-content-center">
+                    <img src="img/miau.jpg" alt="miau" width="50%">
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="row m-3" id="miau">
-            <div class="col-12 d-flex justify-content-center">
-            <img src="img/miau.jpg" alt="miau" width="50%">
-            </div>
-        </div>
-
 
 
         <!-- Formular für die Terminvereinbarung -->
         <form id="appointmentForm">
             <!-- Namenseingabe -->
-            <div class="bg-blue">   
-                <div class="wrapper">
-                    <table>
-                        <thead>
-                            <th class='fix'><h3>Timeslots</h3></th>
-                            <th id="details">
-                                <p>January 1, 2022</p>
-                                <p>from:</p>
-                                <p>10:00 AM</p>
-                                <p>to:</p>
-                                <p>11:00 AM</p>
-                            </th>
-                        </thead>
-                    <tbody id="checkboxes" class="checkbox-columns">
-                        <!-- user votes -->
-                    </tbody>
-                    
-                    </table>
-                  </div>             
+            <div class="row m-3">
+                <div class="col-12">
+                    <div class="bg-blue">   
+                        <div class="wrapper">
+                            <table>
+                                <thead>
+                                    <th class='fix'><h3>Timeslots</h3></th>
+                                    <th id="details">
+                                        <p>January 1, 2022</p>
+                                        <p>from:</p>
+                                        <p>10:00 AM</p>
+                                        <p>to:</p>
+                                        <p>11:00 AM</p>
+                                    </th>
+                                </thead>
+                                <tbody id="checkboxes" class="checkbox-columns">
+                                    <!-- user votes -->
+                                </tbody>
+                            </table>
+                        </div>             
+                    </div>                
                 </div>
-                <div>
-                    <!-- comment field -->
-                    <div class="row">
-                        <div class="col-12 mt-3 mb-3">
-                            <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment"></textarea>
+            </div>
+            
+            <!-- comment field -->
+            <div class="row m-3">
+                <div class="col-12">
+                    <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment"></textarea>
+                </div>
+            </div>
+            <!-- Submit-Button -->
+            <div class="row m-3">
+                <div class="col-6">
+                    <button type="button" class="btn VoteButton btn-primary" id="submitVote">Vote Appointment</button>
+                </div>
+                <br>
+                <h3>Comments:</h3>
+                <div class="col-12">
+                    <div id="comments">
+                        <div class="comment-card">
+                            <h3>Comment 1</h3>
+                            <p>Comment: This is a comment</p>
                         </div>
-                    </div>
-                </div>    
-                <!-- Submit-Button -->
-                <div class="row m-3">
-                    <div class="col-6">
-                        <button type="button" class="btn VoteButton btn-primary" id="submitVote">Vote Appointment</button>
-                    </div>
-                </div>
-                <div id="comments">
-                    <div class="comment-card">
-                        <h3>Comment 1</h3>
-                        <p>Comment: This is a comment</p>
                     </div>
                 </div>
             </div>
