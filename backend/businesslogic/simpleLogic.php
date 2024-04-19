@@ -24,6 +24,9 @@ class SimpleLogic
             case "postVote":
                 $res = $this->dh->postVote($param);
                 break;
+            case "displayComments":
+                $res = $this->dh->displayComments($param);
+                break;
             default:
                 $res = null;
                 break;

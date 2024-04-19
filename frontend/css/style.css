@@ -31,6 +31,9 @@ td, th {
 .fix {
     position:sticky;
     background: #c3dcf0;
+    left:0;
+    max-width:180px;
+    min-width:180px;
 }
 td {
     background-color: #ccc;
@@ -41,14 +44,10 @@ td {
     color: #ffffff;
 }
 
-.fix {
-    left:0;
-    max-width:180px;
-    min-width:180px;
+
+.fix.others {
+    background: #ccc;
 }
-
-
-
 
 .container {
     background-color: #fff;
@@ -142,6 +141,20 @@ h1 {
     flex: 0 0 auto; /* Prevents flex items from growing */
     width: 200px; /* Set a fixed width for each card */
     max-width: 100%; /* Allow cards to shrink to fit smaller screens */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
+.comment-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: normal;
+    background-color: #c3dcf0;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    flex: 0 0 auto; /* Prevents flex items from growing */
+    width: 100%; /* Set a fixed width for each card */
     box-sizing: border-box; /* Ensures padding and border are included in the width */
 }
 

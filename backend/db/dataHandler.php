@@ -115,7 +115,7 @@ class DataHandler
         return "Your vote was successfully inserted into the DB!";
         
     }
-    public function generateCheckboxes($appointmentId)
+public function generateCheckboxes($appointmentId)
 {
     include("db.php");
 
@@ -137,6 +137,32 @@ class DataHandler
 
     return $selecteds;
 }
-    
+
+public function displayComments($appointmentId)
+{
+    include("db.php");
+
+    $query = "SELECT * FROM `comment` WHERE c_appointment = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s", $appointmentId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $count = $result->num_rows;
+    $comments = array();
+
+    for($i= 0; $row = $result->fetch_object(); $i++) {
+        $c = new Comment($row->c_id, $row->c_content, $row->c_user, $row->c_appointment);
+        $comments[$i] = $c;
+    }
+
+    $stmt->close();
+    $mysqli->close();
+
+    // Return comments as JSON
+    echo json_encode($comments);
+    // Make sure to exit to prevent further execution
+    exit();
 }
 
+}
+?>
