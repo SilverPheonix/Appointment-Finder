@@ -49,14 +49,13 @@ td {
     background: #ccc;
 }
 
-
 .container {
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
     margin-top: 50px;
-    max-width: 50%;
 }
+
 
 .bg-white {
     background-color: #ffffff;

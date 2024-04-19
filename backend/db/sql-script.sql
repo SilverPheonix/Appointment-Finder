@@ -63,8 +63,8 @@ CREATE TABLE IF NOT EXISTS `appointment-finder`.`comment` (
   `c_appointment` INT(11) NOT NULL,
   `c_user` INT NOT NULL,
   PRIMARY KEY (`c_id`, `c_appointment`),
-  INDEX `fk_Comment_Appointment1_idx` (`c_appointment` ASC) VISIBLE,
-  INDEX `fk_comment_user1_idx` (`c_user` ASC) VISIBLE,
+  INDEX `fk_Comment_Appointment1_idx` (`c_appointment` ASC),
+  INDEX `fk_comment_user1_idx` (`c_user` ASC),
   CONSTRAINT `fk_Comment_Appointment1`
     FOREIGN KEY (`c_appointment`)
     REFERENCES `appointment-finder`.`appointment` (`a_id`)
@@ -89,8 +89,8 @@ CREATE TABLE IF NOT EXISTS `appointment-finder`.`selected` (
   `s_value` TINYINT(4) NULL DEFAULT NULL,
   `s_user` INT NOT NULL,
   PRIMARY KEY (`s_id`, `s_option`, `s_appointment`),
-  INDEX `fk_Selected_Option1_idx` (`s_option` ASC, `s_appointment` ASC) VISIBLE,
-  INDEX `fk_selected_user1_idx` (`s_user` ASC) VISIBLE,
+  INDEX `fk_Selected_Option1_idx` (`s_option` ASC, `s_appointment` ASC),
+  INDEX `fk_selected_user1_idx` (`s_user` ASC),
   CONSTRAINT `fk_Selected_Option1`
     FOREIGN KEY (`s_option` , `s_appointment`)
     REFERENCES `appointment-finder`.`option` (`o_id` , `o_appointment`)
