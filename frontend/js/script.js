@@ -3,7 +3,6 @@ $(document).ready(function () {
     $("miau").show();
     $("#appointmentForm").hide();
     getAppointmentDetail(1);
-    generateCheckboxes(1);
 });
 
 
@@ -35,6 +34,9 @@ function getAllAppointments(){
             //appointments += "<div class='select-container'><button type='button' class='btn selectbutton appointment' data-appointment-id='" + appointment.id + "'>New Appointment</button></div>";
             //appointments += "</div>";
             $("#appointments").html(appointments);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
         }
     });
 };
@@ -49,6 +51,10 @@ function getAppointmentDetail(appointmentId){
         success: function (response) {
             var details = "";
             console.log(response);
+
+
+            //Options ausgeben
+            //details += "<th><p> Add a new </p><p> Timeslot </p><p> + </p></th>";
             var appointmentArray = response[0];
             for (var i = 0; i < appointmentArray.length; i++) {
                 var detail = appointmentArray[i];
@@ -58,41 +64,26 @@ function getAppointmentDetail(appointmentId){
                 details += "<p>to: " + detail.to + "</p>";
                 details += "</th>";
             }
-            // Add a new timeslot
-            //details += "<th><p> Add a new </p><p> Timeslot </p><p> + </p></th>";
-
             $("#details").html(details);
-            console.log(details);
-            $("#submitVote").data('appointment-id', appointmentId);
 
-        }
-    });
-};
 
-function generateCheckboxes(appointmentId) {
-    console.log('generateCheckboxes called with appointmentId:', appointmentId);
-    $.ajax({
-        type: "POST",
-        url: "../backend/serviceHandler.php",
-        cache: false,
-        data: { method: 'generateCheckboxes', param: appointmentId },
-        dataType: "json",
-        success: function (response) {
+
+            //Selections ausgeben (Votes der vorherigen User)
+            var selectedArray = response[1];
             var row = "";
-            var checkboxesarray = response.filter(item => item.appointment === appointmentId);
 
             // Create an array of unique users
-            var uniqueUsers = [...new Set(checkboxesarray.map(item => item.user))];
+            var uniqueUsers = [...new Set(selectedArray.map(item => item.userid))];
 
-            uniqueUsers.forEach(user => {
-                var userData = checkboxesarray.filter(item => item.user === user);
-                row += "<tr><td class='fix others'>" + user + "</td>";
+            uniqueUsers.forEach(userid => {
+                var userData = selectedArray.filter(item => item.userid === userid);
+                row += "<tr><td class='fix others'>" +userData[0].user + "</td>";
                 userData.forEach(data => {
                     row += "<td><input class='checkbox' type='checkbox' id='otherselections' disabled" + (data.value == 1 ? " checked" : "") + "></td>";
                 });
                 row += "</tr>";
             });
-            var uniqueOptions = [...new Set(checkboxesarray.map(item => item.option))];
+            var uniqueOptions = [...new Set(selectedArray.map(item => item.option))];
 
             // Add the last row
             row += "<tr><td class='fix userinput'><input type='text' class='form-control' id='nameInput' placeholder='Name'></td>";
@@ -102,25 +93,39 @@ function generateCheckboxes(appointmentId) {
             row += "</tr>";
 
             $("#checkboxes").html(row);
-            console.log(row);
 
             // Re-select the appointment after generating checkboxes
             $(".selectbutton[data-appointment-id='" + appointmentId + "']").addClass("selected");
+            
+
+            
+            //Comments ausgeben
+            var comments = "";
+            var commentlist = response[2];
+            for (var i = 0; i < commentlist.length; i++) {
+                var comment = commentlist[i]; // Use the loop variable i to access each comment
+                comments += "<div class='comment-card'>";
+                comments += "<p style='font-weight:bold;'>" + comment.user + "</p>"; // Add missing semicolon after 'font-weight:bold'
+                comments += "<p>" + comment.content + "</p>";
+                comments += "</div>";
+            }
+            $("#comments").html(comments);
+
+            
+            $("#submitVote").data('appointment-id', appointmentId);
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
         }
     });
-}
-
+};
 
 $(document).on('click', '.selectbutton', function() {
     var appointmentId = $(this).data('appointment-id');
     getAppointmentDetail(appointmentId);
     $("#miau").hide();
     $("#appointmentForm").show();
-    generateCheckboxes(appointmentId);
-    displayComments(appointmentId);
 });
 
 $(document).on('click', '#submitVote', function() {
@@ -148,36 +153,10 @@ $(document).on('click', '#submitVote', function() {
             //refresh the form
             $("#nameInput").val("");
             $("#commentInput").val("");
-            generateCheckboxes(appointmentId);
-            displayComments(appointmentId);
+            getAppointmentDetail(appointmentId);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
         }
     });
 });
-
-function displayComments(appointmentId) {
-    $.ajax({
-        type: "POST",
-        url: "../backend/serviceHandler.php",
-        cache: false,
-        data: { method: 'displayComments', param: appointmentId },
-        dataType: "json",
-        success: function (response) {
-            console.log(response); // Check if comments are received
-            var comments = "";
-            for (var i = 0; i < response.length; i++) {
-                var comment = response[i]; // Use the loop variable i to access each comment
-                comments += "<div class='comment-card'>";
-                comments += "<p style='font-weight:bold;'>" + comment.user + "</p>"; // Add missing semicolon after 'font-weight:bold'
-                comments += "<p>" + comment.content + "</p>";
-                comments += "</div>";
-            }
-            $("#comments").html(comments);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-        }
-    });
-}

@@ -34,8 +34,10 @@ class DataHandler
         include("db.php");
 
         $query1 = "SELECT * FROM `option` WHERE o_appointment = ?";
-        $query2 = "SELECT * FROM `selected` WHERE s_appointment = ?";
-        $query3 = "SELECT * FROM `comment` WHERE c_appointment = ?";
+        //Username und ID mitgeben für ausgabe der Votes
+        $query2 = "SELECT s_id,s_option, s_appointment,s_value, u_name, u_id FROM `selected` LEFT Join `user` on s_user = u_id WHERE s_appointment = ?";
+        //Username statt user ID
+        $query3 = "SELECT c_id, c_content, c_appointment, u_name FROM `comment` LEFT Join `user` on c_user = u_id WHERE c_appointment = ?";
 
         //Options eines Appointments aus der Datenbank 
         $stmt = $mysqli->prepare($query1);
@@ -58,7 +60,7 @@ class DataHandler
         $count = $result->num_rows;
         $selected = array();
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $s = new Selected($row->s_id,$row->s_option, $row->s_user,$row->s_appointment, $row->s_value);
+            $s = new Selected($row->s_id,$row->s_option, $row->u_name, $row->u_id,$row->s_appointment, $row->s_value);
             $selected[$i] = $s;
         }
         $stmt->close();
@@ -71,7 +73,7 @@ class DataHandler
         $count = $result->num_rows;
         $comments = array();
         for($i= 0;$row = $result->fetch_object();$i++) {
-            $c = new Comment($row->c_id, $row->c_content,$row->c_user,$row->c_appointment);
+            $c = new Comment($row->c_id, $row->c_content,$row->u_name,$row->c_appointment);
             $comments[$i] = $c;
         }
         $stmt->close();
@@ -86,7 +88,13 @@ class DataHandler
     public function postVote($vote)
     {
         include("db.php");
-        
+        $query0 = "INSERT INTO `user`(`u_name`) VALUES (?) ";
+        $stmt = $mysqli->prepare($query0);
+        //$vote[0] = appointment, $vote[1] = user, $vote[2] = selections als array, $vote[3]= comment
+        $stmt->bind_param("s", $vote[1]);
+        $stmt->execute();
+        $user = $stmt->insert_id;
+        $stmt->close();
         
         //Selection in die Datenbank einfügen
         //$vote[0] = appointment, $vote[1] = user, $vote[2] = selections als array, $vote[3]= comment
@@ -95,7 +103,7 @@ class DataHandler
 
             $stmt = $mysqli->prepare($query1);
             //$vote[0] = appointment, $vote[1] = user, $vote[2] = selections als array, $vote[3]= comment
-            $stmt->bind_param("ssss", $vote[0],$v[0],$vote[1],$v[1]);
+            $stmt->bind_param("ssss", $vote[0],$v[0],$user,$v[1]);
             $stmt->execute();
             $stmt->close();
         }
@@ -106,7 +114,7 @@ class DataHandler
 
             $stmt = $mysqli->prepare($query2);
             //$vote[0] = appointment, $vote[1] = user, $vote[2] = selections als array, $vote[3]= comment
-            $stmt->bind_param("sss", $vote[3],$vote[0],$vote[1]);
+            $stmt->bind_param("sss", $vote[3],$vote[0],$user);
             $stmt->execute();
             $stmt->close();
         }
@@ -115,54 +123,6 @@ class DataHandler
         return "Your vote was successfully inserted into the DB!";
         
     }
-public function generateCheckboxes($appointmentId)
-{
-    include("db.php");
-
-    $query = "SELECT * FROM `selected` WHERE s_appointment = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $appointmentId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $count = $result->num_rows;
-    $selecteds = array();
-
-    for($i= 0; $row = $result->fetch_object(); $i++) {
-        $s = new Selected($row->s_id, $row->s_option, $row->s_user, $row->s_appointment, $row->s_value);
-        $selecteds[$i] = $s;
-    }
-
-    $stmt->close();
-    $mysqli->close();
-
-    return $selecteds;
-}
-
-public function displayComments($appointmentId)
-{
-    include("db.php");
-
-    $query = "SELECT * FROM `comment` WHERE c_appointment = ?";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param("s", $appointmentId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $count = $result->num_rows;
-    $comments = array();
-
-    for($i= 0; $row = $result->fetch_object(); $i++) {
-        $c = new Comment($row->c_id, $row->c_content, $row->c_user, $row->c_appointment);
-        $comments[$i] = $c;
-    }
-
-    $stmt->close();
-    $mysqli->close();
-
-    // Return comments as JSON
-    echo json_encode($comments);
-    // Make sure to exit to prevent further execution
-    exit();
-}
 
 }
 ?>
