@@ -6,41 +6,45 @@ body {
     overflow-x:scroll;
     width:100%; 
 }
-.userinput{
-    background-color: #708fb0;
-    color: #ffffff;
-}
+
 table {
     table-layout: fixed; 
-    width: 100%;
+    width:auto;
     border-collapse: collapse;
     background: white;
 }
-
+.fix {
+    left:0;
+    width: 180px;
+}
 td, th {
-    background-color: #ffffff;
     vertical-align: top;
     text-align: center;
-    width:100px;
+    text-wrap: none;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    margin:0%;
     padding: 5px;
 }
-td {
-    background-color: #ccc;
-}
-tr {
-    border-top: 1px solid #ccc;
-}
+
 .fix {
     position:sticky;
     background: #c3dcf0;
 }
+td {
+    background-color: #ccc;
+}
+
 .userinput {
     background-color: #708fb0;
     color: #ffffff;
 }
-.fix:first-child {
+
+.fix {
     left:0;
-    width:180px;
+    max-width:180px;
+    min-width:180px;
 }
 
 

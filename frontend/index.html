@@ -22,34 +22,14 @@
                     <button type="button" class="btn selectappointment btn-primary" id="selectappointment">Select Appointment</button>
                 </div>
             </div>
-            <div class="appointment-card">
-                <h3>Appointment 1</h3>
-                <p>Date: January 1, 2022</p>
-                <p>Location: Room 101</p>
-                <div class="select-container">
-                    <button type="button" class="btn selectappointment btn-primary" id="selectappointment">Select Appointment</button>
-                </div>
-            </div>
+        </div>
 
-            <div class="appointment-card">
-                <h3>Appointment 1</h3>
-                <p>Date: January 1, 2022</p>
-                <p>Location: Room 101</p>
-                <div class="select-container">
-                    <button type="button" class="btn selectappointment btn-primary" id="selectappointment">Select Appointment</button>
-                </div>
-            </div>
-
-            <div class="appointment-card">
-                <h3>Appointment 1</h3>
-                <p>Date: January 1, 2022</p>
-                <p>Time: 10:00 AM</p>
-                <p>Location: Room 101</p>
-                <div class="select-container">
-                    <button type="button" class="btn selectappointment btn-primary" id="selectappointment">Select Appointment</button>
-                </div>
+        <div class="row m-3" id="miau">
+            <div class="col-12 d-flex justify-content-center">
+            <img src="img/miau.jpg" alt="miau" width="50%">
             </div>
         </div>
+
 
 
         <!-- Formular für die Terminvereinbarung -->
@@ -58,9 +38,67 @@
             <div class="bg-blue">   
                 <div class="wrapper">
                     <table>
-                      <thead>
-                        <th class='fix'><h3>Timeslots</h3></th>
-                        <th>
+                        <thead>
+                            <th class='fix'><h3>Timeslots</h3></th>
+                            <th id="details">
+                                <p>January 1, 2022</p>
+                                <p>from:</p>
+                                <p>10:00 AM</p>
+                                <p>to:</p>
+                                <p>11:00 AM</p>
+                            </th>
+                        </thead>
+                    <tbody id="checkboxes" class="checkbox-columns">
+                        <!-- user votes -->
+                    </tbody>
+                    
+                    </table>
+                  </div>             
+                </div>
+                <div>
+                    <!-- comment field -->
+                    <div class="row">
+                        <div class="col-12 mt-3 mb-3">
+                            <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment"></textarea>
+                        </div>
+                    </div>
+                </div>    
+                <!-- Submit-Button -->
+                <div class="row m-3">
+                    <div class="col-6">
+                        <button type="button" class="btn VoteButton btn-primary" id="VoteButton">Vote Appointment</button>
+                    </div>
+                </div>
+                <div id="comments">
+                    <div class="comment-card">
+                        <p>Comment: This is a comment</p>
+                    </div>
+                    <div class="comment-card">
+                        <p>Comment: This is another comment</p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Eigene JavaScript-Datei -->
+    <script src="js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        
+</body>
+</html>
+
+
+                <!--
+
+                    
+
+
+                    <th>
                             <p>January 1, 2022</p>
                             <p>from:</p>
                             <p>10:00 AM</p>
@@ -101,46 +139,7 @@
                             <p>10:00 AM</p>
                             <p>to:</p>
                             <p>11:00 AM</p>
-                        </th>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class='fix'>First User</td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-
-                        </tr>
-                        <tr>
-                          <td class='fix'>Second User</td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-                          <td><input class="checkbox" type="checkbox" id="otherselections"></td>
-
-                        </tr>
-                        <div id="Input">
-                            <tr>
-                                <td class='fix userinput'><input type="text" class="form-control" id="nameInput" placeholder="Name"></td>
-                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
-                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
-                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
-                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
-                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
-                                <td class="userinput"><input class="checkbox" type="checkbox" id="selecttimeslot"></td>
-                              </tr>
-                        </div>
-                      </tbody>
-                    </table>
-                  </div>             
-
-
-                <!--
+                        </th> 
                                 <div class="row">
                                     <div class="col-6 mt-3 mb-3">
                                         <label class="form-label">Timeslots:</label>
@@ -165,36 +164,3 @@
                                     </div>
                                 </div>
                 -->
-                </div>
-                <div id="Details">
-                    <!-- comment field -->
-                    <div class="row">
-                        <div class="col-12 mt-3 mb-3">
-                            <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment"></textarea>
-                        </div>
-                    </div>
-                </div>    
-                <!-- Submit-Button -->
-                <div class="row m-3">
-                    <div class="col-5">
-                        <button type="button" class="btn VoteButton btn-primary" id="VoteButton">Vote Appointment</button>
-                    </div>
-                    <div class="col-7">
-                        <img src="img/miau.jpg" alt="miau" height="100">
-                    </div>
-                </div>
-            </div>
-        </form>
-        <ol id="appointments"></ol>
-    </div>
-
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Eigene JavaScript-Datei -->
-    <script src="js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-        
-</body>
-</html>

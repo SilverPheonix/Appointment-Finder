@@ -82,7 +82,7 @@ class DataHandler
         $appointment = [$options,$selected,$comments];
         return $appointment;
     }
-    #
+    
     public function postVote($vote)
     {
         include("db.php");
@@ -115,5 +115,28 @@ class DataHandler
         return "Your vote was successfully inserted into the DB!";
         
     }
+    public function generateCheckboxes($appointmentId)
+{
+    include("db.php");
+
+    $query = "SELECT * FROM `selected` WHERE s_appointment = ?";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s", $appointmentId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $count = $result->num_rows;
+    $selecteds = array();
+
+    for($i= 0; $row = $result->fetch_object(); $i++) {
+        $s = new Selected($row->s_id, $row->s_option, $row->s_user, $row->s_appointment, $row->s_value);
+        $selecteds[$i] = $s;
+    }
+
+    $stmt->close();
+    $mysqli->close();
+
+    return $selecteds;
+}
     
 }
+
