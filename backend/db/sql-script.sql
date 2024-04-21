@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 12:08 PM
+-- Generation Time: Apr 21, 2024 at 04:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -66,8 +66,8 @@ INSERT INTO `comment` (`c_id`, `c_content`, `c_appointment`, `c_user`) VALUES
 (12, 'Kommt auch unser Klassenvorstand?', 2, 7),
 (13, 'Treffen wir uns bei der U-Bahn?', 2, 7),
 (14, 'Nice!', 3, 6),
-(15, 'miau', 2, 8),
-(16, 'miau', 4, 8);
+(15, 'Keiner mag dich Toni.', 2, 3),
+(16, 'Kommt noch wer außer mir? :(', 4, 7);
 
 -- --------------------------------------------------------
 
@@ -144,9 +144,9 @@ INSERT INTO `selected` (`s_id`, `s_option`, `s_appointment`, `s_value`, `s_user`
 (76, 9, 3, 1, 6),
 (77, 10, 3, 0, 6),
 (78, 11, 3, 1, 6),
-(79, 5, 2, 0, 8),
-(80, 6, 2, 1, 8),
-(81, 7, 2, 0, 8),
+(79, 5, 2, 0, 7),
+(80, 6, 2, 1, 7),
+(81, 7, 2, 0, 7),
 (82, 12, 4, 0, 7),
 (83, 13, 4, 1, 7),
 (84, 14, 4, 0, 7);
@@ -173,8 +173,7 @@ INSERT INTO `user` (`u_id`, `u_name`) VALUES
 (4, 'Ava'),
 (5, 'Fiona'),
 (6, 'Karola'),
-(7, 'Toni'),
-(8, 'mina');
+(7, 'Toni');
 
 --
 -- Indexes for dumped tables
@@ -229,7 +228,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `option`
@@ -241,13 +240,13 @@ ALTER TABLE `option`
 -- AUTO_INCREMENT for table `selected`
 --
 ALTER TABLE `selected`
-  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
