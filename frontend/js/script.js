@@ -120,22 +120,18 @@ function getAppointmentDetail(appointmentId){
                 row += "<tr><td class='fix userinput expired'><input type='text' class='form-control' id='nameInput' disabled  placeholder='Name'></td>";
                 uniqueOptions.forEach(option => {
                     row += "<td class='userinput expired'><input class='checkbox' type='checkbox' disabled id='option" + option + "'></td>";
-                })} else {
+             })} else {
                 $('.fix').removeClass('expired');
                 $('.bg-grey').removeClass('bg-grey').addClass('bg-blue');
                 $("#CommentAndSubmit").show();
                 row += "<tr><td class='fix userinput'><input type='text' class='form-control' id='nameInput' placeholder='Name'></td>";
                 uniqueOptions.forEach(option => {
                     row += "<td class='userinput'><input class='checkbox' type='checkbox' id='option" + option + "'></td>";
-                })};
+            })};
             row += "</tr>";
 
 
-            $("#checkboxes").html(row);
-
-            // Re-select the appointment after generating checkboxes
-            $(".selectbutton[data-appointment-id='" + appointmentId + "']").addClass("selected");
-            
+            $("#checkboxes").html(row);            
             
             //Comments ausgeben
             var comments = "";
