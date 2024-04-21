@@ -1,7 +1,7 @@
 $(document).ready(function () {
     getAllAppointments();
     $("miau").show();
-    $("#appointmentForm").hide();
+    $("#appointmentDetails").hide();
 });
 
 
@@ -31,18 +31,19 @@ function getAllAppointments(){
                     // Use expired layout
                     appointments += "<div class='appointment-card expired'>";
                     appointments += "<h3>" + appointment.title + "</h3>";
-                    appointments += "<p>Expired at: " + appointment.exdate + "</p>";
-                    appointments += "<p>Location: " + appointment.place + "</p>";
+                    appointments += "<strong>Expired at:</strong><p> " + expirationDate.toLocaleDateString('en-GB') + "</p>"; // Change the date format to en-GB
+                    appointments += "<strong>Location:</strong><p> " + appointment.place + "</p>";
                     appointments += "<div class='select-container expired'>";
                     appointments += "<button type='button' class='btn selectbutton expired appointment' data-appointment-id='" + appointment.id + "'>See Votes</button>";
                     appointments += "</div>";
                     appointments += "</div>";
+
                 } else {
                     // Use regular layout
                     appointments += "<div class='appointment-card'>";
                     appointments += "<h3>" + appointment.title + "</h3>";
-                    appointments += "<p>Vote until: " + appointment.exdate + "</p>";
-                    appointments += "<p>Location: " + appointment.place + "</p>";
+                    appointments += "<strong>Vote until:</strong><p> " + expirationDate.toLocaleDateString('en-GB') + "</p>"; // Change the date format to en-GB
+                    appointments += "<strong>Location:</strong><p>" + appointment.place + "</p>";
                     appointments += "<div class='select-container'>";
                     appointments += "<button type='button' class='btn selectbutton appointment' data-appointment-id='" + appointment.id + "'>Select Appointment</button>";
                     appointments += "</div>";
@@ -84,12 +85,16 @@ function getAppointmentDetail(appointmentId){
             var currentDate = new Date();
             var expirationDate = new Date(appointmentArray[0].date);
 
+            details+= "<th class='fix'><h3>Timeslots</h3></th>";
             for (var i = 0; i < appointmentArray.length; i++) {
                 var detail = appointmentArray[i];
                 details += "<th>";
-                details += "<p>" + detail.date + "</p>";
-                details += "<p>from: " + detail.from + "</p>";
-                details += "<p>to: " + detail.to + "</p>";
+                details += "<p class='date'>" + expirationDate.toLocaleString('default', { month: 'short' }).toUpperCase() + "</p>"; // Month(first 3 letters)
+                details += "<big>" + expirationDate.getDate().toString().padStart(2, '0') + "</big>"; // Day(00)
+                details += "<p class='date'>" + expirationDate.getFullYear() + "</p>"; // year(0000)
+                details += "<p class='pinktext'> " + detail.from.slice(0, -3) + "</p>";// Remove the last 3 characters so it only shows the time without seconds
+                details += "<p class='pinktext'> - </p>";// Add a dash
+                details += "<p class='pinktext'> " + detail.to.slice(0, -3) + "</p>";// same here
                 details += "</th>";
             }
             $("#details").html(details);
@@ -116,6 +121,8 @@ function getAppointmentDetail(appointmentId){
             if (expirationDate < currentDate) {
                 $('.fix').addClass('expired');
                 $('.bg-blue').removeClass('bg-blue').addClass('bg-grey');
+                $('th').addClass('expired');
+                $('.pinktext').removeClass('pinktext').addClass('greytext');
                 $("#CommentAndSubmit").hide();
                 row += "<tr><td class='fix userinput expired'><input type='text' class='form-control' id='nameInput' disabled  placeholder='Name'></td>";
                 uniqueOptions.forEach(option => {
@@ -123,6 +130,8 @@ function getAppointmentDetail(appointmentId){
              })} else {
                 $('.fix').removeClass('expired');
                 $('.bg-grey').removeClass('bg-grey').addClass('bg-blue');
+                $('th').removeClass('expired');
+                $('.greytext').removeClass('greytext').addClass('pinktext');
                 $("#CommentAndSubmit").show();
                 row += "<tr><td class='fix userinput'><input type='text' class='form-control' id='nameInput' placeholder='Name'></td>";
                 uniqueOptions.forEach(option => {
@@ -164,7 +173,7 @@ $(document).on('click', '.selectbutton', function() {
     getAppointmentDetail(appointmentId);
     $("#miau").hide();
     $("#Title").html('<h2>' + title +'</h2>');
-    $("#appointmentForm").show();
+    $("#appointmentDetails").show();
     
     // Remove "selected" class from all other buttons
     $(".selectbutton").removeClass("selected");

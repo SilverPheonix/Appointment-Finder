@@ -11,7 +11,6 @@ table {
     table-layout: fixed; 
     width:auto;
     border-collapse: collapse;
-    background: white;
 }
 .fix {
     width: 180px;
@@ -28,15 +27,27 @@ table {
 }
 
 td, th {
-    vertical-align: top;
     text-align: center;
-    text-wrap: none;
-    width: 100px;
     max-width: 100px;
     min-width: 100px;
     margin:0%;
     padding: 5px;
 }
+
+th {
+    background-color: #ffffff;
+    border-right: 2px solid #708fb0;
+}
+th.expired {
+    background-color: #ffffff;
+    border-right: 2px solid #686868;
+}
+th:last-child {
+    border-right: none;
+}
+
+
+
 
 td {
     background-color: #ccc;
@@ -61,6 +72,7 @@ td {
     border-radius: 5px;
     padding: 20px;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 
@@ -103,6 +115,58 @@ h2 {
     font-weight: 600;
 }
 
+h3 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+h4 {
+    margin-top: 5px;
+    text-align: center;
+    font-weight: 600;
+    color: #be88a2;
+    font-size: 1.2em;
+}
+
+p {
+    font-size: 1em;
+    color: #000000;
+    font-weight: 500;
+    margin: 5px;
+}
+
+big {
+    font-size: 1.6em;
+    color: #000000;
+    font-weight: 700;
+    margin: 0px;
+}
+
+.date {
+    font-size: 1.1em;
+    color: #6e6e6e;
+    font-weight: 500;
+    margin: 0px;
+    padding: 0px;
+}
+
+.greytext {
+    color: #565656;
+    font-size: 1.3em;
+    font-weight: 700;
+    font-stretch:expanded;
+    margin:auto;
+}
+
+.pinktext {
+    color: #be88a2;
+    font-size: 1.3em;
+    font-weight: 700;
+    font-stretch:expanded;
+    margin:auto;
+}
+
 .scrollable-container {
     border-radius: 5px;
     display: flex;
@@ -113,7 +177,7 @@ h2 {
     margin-bottom: 10px;
     overflow-y: scroll;
     scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ ?????*/
 }
 .scrollable-container::-webkit-scrollbar { /* WebKit */
     width: 0;
@@ -125,8 +189,7 @@ h2 {
     justify-content: center;
     background-color: #5c83ae;
     width: 100%;
-    height: 50px;
-    padding: 10px;
+
 }
 
 .select-container.expired {
@@ -178,6 +241,16 @@ h2 {
     background-color: #f0c3dc;
 }
 
+#commentInput {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border-width: 5px;
+    border-color: #be88a2;
+    border-style: solid;
+    box-sizing: border-box;
+}
+
 .comment-card {
     display: flex;
     flex-direction: column;
@@ -199,14 +272,12 @@ h2 {
 .VoteButton {
     background-color: #be88a2;
     color: #ffffff;
-    outline-color: #9c6f89;
     border:none;
     font-weight: bold;
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    border-width: 3px;
-    margin: 10px;
+    margin-top: 10px;
 }
 .VoteButton:active,
 .VoteButton:hover,
@@ -220,13 +291,16 @@ h2 {
 
 .selectbutton {
     background-color: #ffffff;
-    text-wrap: none;
     color: #be88a2;
-    font-weight: 600;
-    border: none;
+    border:none;
+    font-weight: bold;
+    padding: 10px 20px;
     border-radius: 5px;
-    padding: 5px 10px;
     cursor: pointer;
+    margin-bottom: 0px;
+    margin: 15px;
+    height: 40px;
+    text-align: center;
 }
 
 .selectbutton.expired {
@@ -240,14 +314,22 @@ h2 {
 .selectbutton:active,
 .selectbutton:visited {
     background-color: #fa5d94;
-    border-color: #ab466d;
+    color: #ffffff;
+    box-shadow: none;
+}
+
+.selectbutton.selected.expired,
+.selectbutton:hover.expired,
+.selectbutton:focus.expired,
+.selectbutton:active.expired,
+.selectbutton:visited.expired {
+    background-color: #56c1ff;
     color: #ffffff;
     box-shadow: none;
 }
 
 .addbutton {
     background-color: #ffffff;
-    text-wrap: none;
     color: #be88a2;
     font-weight: 600;
     border: none;
