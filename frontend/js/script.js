@@ -16,23 +16,49 @@ function getAllAppointments(){
         success: function (response) {
             var appointments = "";
             console.log(response);
+
+
+            // Sort the appointments by date
+            response.sort(function(a, b) {
+                return new Date(a.exdate) - new Date(b.exdate);
+            });
+
             for (var i = 0; i < response.length; i++) {
                 var appointment = response[i];
-                appointments += "<div class='appointment-card'>";
-                appointments += "<h3>" + appointment.title + "</h3>";
-                appointments += "<p>Vote until: " + appointment.exdate + "</p>";
-                appointments += "<p>Location: " + appointment.place + "</p>";
-                appointments += "<div class='select-container'>";
-                appointments += "<button type='button' class='btn selectbutton appointment' data-appointment-id='" + appointment.id + "'>Select Appointment</button>";
-                appointments += "</div>";
-                appointments += "</div>";
+                var currentDate = new Date();
+                var expirationDate = new Date(appointment.exdate);
+
+                if (expirationDate < currentDate) {
+                    // Use expired layout
+                    appointments += "<div class='appointment-card expired'>";
+                    appointments += "<h3>" + appointment.title + "</h3>";
+                    appointments += "<p>Expired at: " + appointment.exdate + "</p>";
+                    appointments += "<p>Location: " + appointment.place + "</p>";
+                    appointments += "<div class='select-container expired'>";
+                    appointments += "<button type='button' class='btn selectbutton expired appointment' data-appointment-id='" + appointment.id + "'>See Votes</button>";
+                    appointments += "</div>";
+                    appointments += "</div>";
+                } else {
+                    // Use regular layout
+                    appointments += "<div class='appointment-card'>";
+                    appointments += "<h3>" + appointment.title + "</h3>";
+                    appointments += "<p>Vote until: " + appointment.exdate + "</p>";
+                    appointments += "<p>Location: " + appointment.place + "</p>";
+                    appointments += "<div class='select-container'>";
+                    appointments += "<button type='button' class='btn selectbutton appointment' data-appointment-id='" + appointment.id + "'>Select Appointment</button>";
+                    appointments += "</div>";
+                    appointments += "</div>";
+                }
             }
-            //add a new appointment
-            //appointments += "<div class='appointment-card'>";
-            //appointments += "<h3> Add a new </h3>";
-            //appointments += "<h3>Appointment </h3>";
-            //appointments += "<div class='select-container'><button type='button' class='btn selectbutton appointment' data-appointment-id='" + appointment.id + "'>New Appointment</button></div>";
-            //appointments += "</div>";
+            /*
+                add a new appointment?
+                appointments += "<div class='appointment-card'>";
+                appointments += "<h3> Add a new </h3>";
+                appointments += "<h3>Appointment </h3>";
+                appointments += "<div class='select-container'><button type='button' class='btn selectbutton appointment' data-appointment-id='" + appointment.id + "'>New Appointment</button></div>";
+                appointments += "</div>";
+            */
+
             $("#appointments").html(appointments);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -56,6 +82,9 @@ function getAppointmentDetail(appointmentId){
             //Options ausgeben
             //details += "<th><p> Add a new </p><p> Timeslot </p><p> + </p></th>";
             var appointmentArray = response[0];
+            var currentDate = new Date();
+            var expirationDate = new Date(appointmentArray[0].date);
+
             for (var i = 0; i < appointmentArray.length; i++) {
                 var detail = appointmentArray[i];
                 details += "<th>";
@@ -73,7 +102,7 @@ function getAppointmentDetail(appointmentId){
             var row = "";
 
             // Create an array of unique users
-            var uniqueUsers = [...new Set(selectedArray.map(item => item.userid))];
+            var uniqueUsers = [...new Set(selectedArray.map(item => item.userid))];        
 
             uniqueUsers.forEach(userid => {
                 var userData = selectedArray.filter(item => item.userid === userid);
@@ -85,26 +114,36 @@ function getAppointmentDetail(appointmentId){
             });
             var uniqueOptions = [...new Set(selectedArray.map(item => item.option))];
 
-            // Add the last row
-            row += "<tr><td class='fix userinput'><input type='text' class='form-control' id='nameInput' placeholder='Name'></td>";
-            uniqueOptions.forEach(option => {
-                row += "<td class='userinput'><input class='checkbox' type='checkbox' id='option" + option + "'></td>";
-            });
+            // Add the last row depending on the expiration date and hide or show the form
+            if (expirationDate < currentDate) {
+                $("#CommentAndSubmit").hide();
+                row += "<tr><td class='fix userinput'><input type='text' class='form-control' id='nameInput' disabled  placeholder='Name'></td>";
+                uniqueOptions.forEach(option => {
+                    row += "<td class='userinput'><input class='checkbox' type='checkbox' disabled id='option" + option + "'></td>";
+                })} else {
+                $("#CommentAndSubmit").show();
+                row += "<tr><td class='fix userinput'><input type='text' class='form-control' id='nameInput' placeholder='Name'></td>";
+                uniqueOptions.forEach(option => {
+                    row += "<td class='userinput'><input class='checkbox' type='checkbox' id='option" + option + "'></td>";
+                })};
             row += "</tr>";
+
 
             $("#checkboxes").html(row);
 
             // Re-select the appointment after generating checkboxes
             $(".selectbutton[data-appointment-id='" + appointmentId + "']").addClass("selected");
             
-
             
             //Comments ausgeben
             var comments = "";
             var commentlist = response[2];
             for (var i = 0; i < commentlist.length; i++) {
                 var comment = commentlist[i]; // Use the loop variable i to access each comment
-                comments += "<div class='comment-card'>";
+                if (expirationDate < currentDate) {
+                    comments += "<div class='comment-card expired'>";
+                } else {
+                comments += "<div class='comment-card'>";}
                 comments += "<p style='font-weight:bold;'>" + comment.user + "</p>"; // Add missing semicolon after 'font-weight:bold'
                 comments += "<p>" + comment.content + "</p>";
                 comments += "</div>";

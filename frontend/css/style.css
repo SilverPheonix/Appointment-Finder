@@ -109,7 +109,12 @@ h1 {
     padding: 10px;
 }
 
+.select-container.expired {
+    background-color: #818181;
+}
+
 .checkbox {
+    margin-top: 5px;
     width: 25px;
     height: 25px;
 }
@@ -130,6 +135,10 @@ h1 {
     box-sizing: border-box; /* Ensures padding and border are included in the width */
 }
 
+.appointment-card.expired {
+    background-color: #dadada;
+}
+
 .timeslot-card {
     display: flex;
     flex-direction: column;
@@ -145,6 +154,10 @@ h1 {
     box-sizing: border-box; /* Ensures padding and border are included in the width */
 }
 
+.timeslot-card.expired {
+    background-color: #f0c3dc;
+}
+
 .comment-card {
     display: flex;
     flex-direction: column;
@@ -157,6 +170,10 @@ h1 {
     flex: 0 0 auto; /* Prevents flex items from growing */
     width: 100%; /* Set a fixed width for each card */
     box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
+
+.comment-card.expired {
+    background-color: #cacaca;
 }
 
 .VoteButton {
@@ -190,6 +207,11 @@ h1 {
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.selectbutton.expired {
+    background-color: #4b4b4b;
+    color: #ffffff;
 }
 
 .selectbutton:hover,

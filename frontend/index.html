@@ -63,24 +63,26 @@
             </div>
             
             <!-- comment field -->
-            <div class="row m-3">
-                <div class="col-12">
-                    <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment"></textarea>
+            <div id="CommentAndSubmit">
+                <div class="row m-3">
+                    <div class="col-12">
+                        <textarea class="form-control" id="commentInput" rows="3" placeholder="Leave a comment"></textarea>
+                    </div>
+                </div>
+                <!-- Submit-Button -->
+                <div class="row m-3">
+                    <div class="col-6">
+                        <button type="button" class="btn VoteButton btn-primary" id="submitVote">Vote Appointment</button>
+                    </div>
                 </div>
             </div>
-            <!-- Submit-Button -->
-            <div class="row m-3">
-                <div class="col-6">
-                    <button type="button" class="btn VoteButton btn-primary" id="submitVote">Vote Appointment</button>
-                </div>
-                <br>
-                <h3>Comments:</h3>
-                <div class="col-12">
-                    <div id="comments">
-                        <div class="comment-card">
-                            <h3>Comment 1</h3>
-                            <p>Comment: This is a comment</p>
-                        </div>
+            <br>
+            <h3>Comments:</h3>
+            <div class="col-12">
+                <div id="comments">
+                    <div class="comment-card">
+                        <h3>Comment 1</h3>
+                        <p>Comment: This is a comment</p>
                     </div>
                 </div>
             </div>
