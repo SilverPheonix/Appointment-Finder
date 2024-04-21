@@ -2,7 +2,6 @@ $(document).ready(function () {
     getAllAppointments();
     $("miau").show();
     $("#appointmentForm").hide();
-    getAppointmentDetail(1);
 });
 
 
@@ -95,11 +94,10 @@ function getAppointmentDetail(appointmentId){
             }
             $("#details").html(details);
 
-
-
             //Selections ausgeben (Votes der vorherigen User)
             var selectedArray = response[1];
             var row = "";
+
 
             // Create an array of unique users
             var uniqueUsers = [...new Set(selectedArray.map(item => item.userid))];        
@@ -116,11 +114,15 @@ function getAppointmentDetail(appointmentId){
 
             // Add the last row depending on the expiration date and hide or show the form
             if (expirationDate < currentDate) {
+                $('.fix').addClass('expired');
+                $('.bg-blue').removeClass('bg-blue').addClass('bg-grey');
                 $("#CommentAndSubmit").hide();
-                row += "<tr><td class='fix userinput'><input type='text' class='form-control' id='nameInput' disabled  placeholder='Name'></td>";
+                row += "<tr><td class='fix userinput expired'><input type='text' class='form-control' id='nameInput' disabled  placeholder='Name'></td>";
                 uniqueOptions.forEach(option => {
-                    row += "<td class='userinput'><input class='checkbox' type='checkbox' disabled id='option" + option + "'></td>";
+                    row += "<td class='userinput expired'><input class='checkbox' type='checkbox' disabled id='option" + option + "'></td>";
                 })} else {
+                $('.fix').removeClass('expired');
+                $('.bg-grey').removeClass('bg-grey').addClass('bg-blue');
                 $("#CommentAndSubmit").show();
                 row += "<tr><td class='fix userinput'><input type='text' class='form-control' id='nameInput' placeholder='Name'></td>";
                 uniqueOptions.forEach(option => {
@@ -162,10 +164,19 @@ function getAppointmentDetail(appointmentId){
 
 $(document).on('click', '.selectbutton', function() {
     var appointmentId = $(this).data('appointment-id');
+    var title = $(this).closest('.appointment-card').find('h3').text();
     getAppointmentDetail(appointmentId);
     $("#miau").hide();
+    $("#Title").html('<h2>' + title +'</h2>');
     $("#appointmentForm").show();
+    
+    // Remove "selected" class from all other buttons
+    $(".selectbutton").removeClass("selected");
+    
+    // Add "selected" class to the clicked button
+    $(this).addClass("selected");
 });
+
 
 $(document).on('click', '#submitVote', function() {
     var appointmentId = $(this).data('appointment-id');

@@ -14,9 +14,19 @@ table {
     background: white;
 }
 .fix {
-    left:0;
     width: 180px;
+    position:sticky;
+    background: #c3dcf0;
+    left:0;
+    max-width:180px;
+    min-width:180px;
 }
+
+.fix.expired {
+    background: #686868;
+    color: #ffffff;
+}
+
 td, th {
     vertical-align: top;
     text-align: center;
@@ -28,13 +38,6 @@ td, th {
     padding: 5px;
 }
 
-.fix {
-    position:sticky;
-    background: #c3dcf0;
-    left:0;
-    max-width:180px;
-    min-width:180px;
-}
 td {
     background-color: #ccc;
 }
@@ -42,6 +45,10 @@ td {
 .userinput {
     background-color: #708fb0;
     color: #ffffff;
+}
+
+.userinput.expired {
+    background-color: #8b8b8b;
 }
 
 
@@ -77,10 +84,23 @@ td {
     border-radius: 5px;
 }
 
+.bg-grey {
+    background-color: #8b8b8b;
+    color: #000000;
+    padding: 10px;
+    border-radius: 5px;
+}
+
 h1 {
     text-align: center;
     color: #5c83ae;
     font-weight: 800;
+}
+
+h2 {
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .scrollable-container {
@@ -214,6 +234,7 @@ h1 {
     color: #ffffff;
 }
 
+.selectbutton.selected,
 .selectbutton:hover,
 .selectbutton:focus,
 .selectbutton:active,
