@@ -18,14 +18,8 @@ class SimpleLogic
             case "getAppointmentDetail":
                 $res = $this->dh->getAppointmentDetail($param);
                 break;
-            case "generateCheckboxes":
-                $res = $this->dh->generateCheckboxes($param);
-                break;
             case "postVote":
                 $res = $this->dh->postVote($param);
-                break;
-            case "displayComments":
-                $res = $this->dh->displayComments($param);
                 break;
             default:
                 $res = null;
