@@ -20,7 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `appointment-finder`
 --
-
+CREATE SCHEMA IF NOT EXISTS `Appointment-Finder` DEFAULT CHARACTER SET utf8 ;
+USE `Appointment-Finder` ;
 -- --------------------------------------------------------
 
 --
