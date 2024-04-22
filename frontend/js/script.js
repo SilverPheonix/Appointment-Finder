@@ -16,7 +16,6 @@ function getAllAppointments(){
             var appointments = "";
             console.log(response);
 
-
             // Sort the appointments by date
             response.sort(function(a, b) {
                 return new Date(a.exdate) - new Date(b.exdate);
@@ -150,7 +149,8 @@ function getAppointmentDetail(appointmentId){
                 if (expirationDate < currentDate) {
                     comments += "<div class='comment-card expired'>";
                 } else {
-                comments += "<div class='comment-card'>";}
+                comments += "<div class='comment-card'>";
+                }
                 comments += "<p style='font-weight:bold;'>" + comment.user + "</p>"; // Add missing semicolon after 'font-weight:bold'
                 comments += "<p>" + comment.content + "</p>";
                 comments += "</div>";
